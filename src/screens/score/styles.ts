@@ -1,35 +1,49 @@
 import styled from 'styled-components/native';
 
-interface PropsButton {
-  color?: string;
-}
-
 export const Container = styled.View`
  background-color: ${({ theme }) => theme.COLORS.GRAY_600};
  align-items: center;
  /* justify-content: center; */
- /* padding-top: 20px; */
+ padding-top: 16px;
 
+`;
+
+export const SectionVideo = styled.View`
+ align-items: center;
+ justify-content: center;
+ flex-direction: column;
+ background-color: ${({ theme }) => theme.COLORS.GRAY_600};
+
+ padding-bottom: 20px;
+ /* padding-top: 20px; */
+ /* height: 350px;
+ padding-bottom: 24px; */
+ /* padding-top: 24px; */
 `;
 export const Section = styled.View`
  align-items: center;
  justify-content: center;
  flex-direction: row;
  background-color: ${({ theme }) => theme.COLORS.GRAY_600};
- padding: 10px;
+ /* padding: 24px; */
  padding-bottom: 24px;
 `;
 export const SectionList = styled.View`
- align-items: center;
+align-items: center;
  flex-direction: row;
  background-color: ${({ theme }) => theme.COLORS.GRAY_600};
  /* padding: 24px; */
- padding-bottom: 24px;
+ padding-bottom: 14px;
+`;
+export const SectionHeader = styled.View`
+ background-color: ${({ theme }) => theme.COLORS.GRAY_600};
+ /* padding: 24px; */
+ padding: 24px;
 `;
 
 export const SectionFlag = styled.View`
  background-color: ${({ theme }) => theme.COLORS.GRAY_600};
- max-height: 380px;
+ /* max-height: 380px; */
  margin-top: -35px;
 `;
 export const ContainerFlag = styled.View`
@@ -38,13 +52,12 @@ export const ContainerFlag = styled.View`
  flex-direction: row;
  background-color: ${({ theme }) => theme.COLORS.GRAY_600};
  padding: 30px;
- padding-top: 100px;
+ padding-top: 50px;
 `;
 
 export const TextCount = styled.Text`
  color: ${({ theme }) => theme.COLORS.YELLOW};
- font-size: 74px;
- margin-bottom: 15px;
+ font-size: 18px;
 `;
 
 export const TextFps = styled.Text`
@@ -55,20 +68,23 @@ export const TextFlag = styled.Text`
  margin-left: 10px;
 `;
 
-export const Button = styled.TouchableOpacity<PropsButton>`
+export const Button = styled.TouchableOpacity`
  /* flex: 1; */
+ z-index: 1;
 
  height: 56px;
  width: 56px;
 
- background-color: ${(props) => props.color === 'green' ?  ({ theme }) => theme.COLORS.GREEN_200 : ''}; 
  border-radius: 32px;
 
+ position: absolute;
  align-items: center;
  justify-content: center;
  text-align: center;
- margin-top: 30px;
- margin: 15px;
+ /* margin-top: 30px;
+ margin: 15px; */
+ /* padding-top: px; */
+ 
 `;
 export const ButtonYellow = styled.TouchableOpacity`
  /* flex: 1; */
@@ -93,43 +109,22 @@ export const Title = styled.Text`
 `;
 export const ButtonBlue = styled.TouchableOpacity`
  /* flex: 1; */
-
  height: 56px;
  width: 56px;
-
  background-color: ${({ theme }) => theme.COLORS.BLUE_500};
- 
  border-radius: 32px;
-
  align-items: center;
  justify-content: center;
-
- margin-top: 30px;
- margin: 15px;
-`;
-export const ButtonRed = styled.TouchableOpacity`
- /* flex: 1; */
-
- height: 56px;
- width: 56px;
-
- background-color: ${({ theme }) => theme.COLORS.RED};
- 
- border-radius: 32px;
-
- align-items: center;
- justify-content: center;
-
  margin-top: 30px;
  margin: 15px;
 `;
 
-export const SectionCamera = styled.View`
- width: 100%;
- flex-direction: row;
+export const SectionHeaderButton = styled.View`
+ align-items: center;
  justify-content: space-between;
- padding-left: 20px;
- padding-top: 20px;
+ flex-direction: row;
+ width: 100%;
+ padding: 0px 0px 0px 25px;
  background-color: ${({ theme }) => theme.COLORS.GRAY_600};
 `;
 
@@ -137,18 +132,5 @@ export const ButtonReturn = styled.TouchableOpacity`
  height: 56px;
  width: 56px;
  border-radius: 32px;
- /* padding-top: 30px; */
-`;
-export const ButtonCamera = styled.TouchableOpacity`
- height: 56px;
- width: 56px;
- border-radius: 32px;
- /* padding-top: 30px; */
-`;
-
-export const TitleNameProd = styled.Text`
- font-size: 16px;
- color: ${({ theme }) => theme.COLORS.GRAY_250};
- margin-top: -15px;
- margin-bottom: 15px;
+ padding-top: 30px;
 `;
