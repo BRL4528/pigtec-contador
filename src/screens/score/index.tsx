@@ -65,8 +65,8 @@ export function Score() {
         console.log('eeeee')
 
         setIsloading(true);
-        await axios.get(`http://167.71.20.221/scores/validate`).then(async () => {
-          const response = await axios.get<ScorePrps>(`http://167.71.20.221/scores/show`, {
+        await axios.get(`https://node.pigtek.com.br/scores/validate`).then(async () => {
+          const response = await axios.get<ScorePrps>(`https://node.pigtek.com.br/scores/show`, {
             params: {
               id: scoreId
             }

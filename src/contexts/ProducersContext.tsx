@@ -31,7 +31,7 @@ export function ProducerContextProvider({ children }: AuthContextProviderProps) 
 
   async function addProducers() {
     try {
-      const { data } = await axios.get('http://167.71.20.221/producers');
+      const { data } = await axios.get('https://node.pigtek.com.br/producers');
       if (data.length > 0) {
         setisLoadingProducerStorageData(true);
         await storageProducerSave(data);

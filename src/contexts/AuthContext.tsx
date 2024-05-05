@@ -43,7 +43,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
 
   async function signInUser(nickname: string) {
     try {
-      const { data } = await axios.post('http://167.71.20.221/sessions-farms', { nickname });
+      const { data } = await axios.post('https://node.pigtek.com.br/sessions-farms', { nickname });
       if (data.farm && data.token) {
         setisLoadingUserStorageData(true);
         await storageUserSave(data.farm);

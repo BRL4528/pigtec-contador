@@ -5,6 +5,8 @@ import { useNavigation } from '@react-navigation/native';
 import { AppNavigatorRoutesProps } from '../../routes/app.routes';
 import { useAuth } from "@hooks/useAuth";
 import { useProducers } from "@hooks/useProducer";
+import { useEffect, useState } from "react";
+import { api } from "@services/api";
 
 interface MenuOpts {
   section: string;
@@ -45,6 +47,11 @@ const optionsData = [
         title: 'Central de configurações',
         icon: 'cog',
         type: 'config',
+      },
+      {
+        title: 'Desligar equipamento',
+        icon: 'power',
+        type: 'power',
       }
     ]
   }
@@ -55,6 +62,7 @@ export function OptionsCount() {
   const navigation = useNavigation<AppNavigatorRoutesProps>();
   const { signOut } = useAuth();
   const { removeProducers } = useProducers();
+  const [jetsonOnline , setJetsonOnline] = useState(false);
 
   function handleRunDataForCounting(type: string) {
     if (type === 'simple_count') {
@@ -70,6 +78,13 @@ export function OptionsCount() {
     if(type === 'history') {
     navigation.navigate('history');
     }
+    if(type === 'power') {
+    api.get('/shutdown').then((response) => {
+      if(response.status === 200) {
+        setJetsonOnline(false)
+      } 
+    })
+    }
   }
 
 
@@ -77,6 +92,19 @@ export function OptionsCount() {
     signOut()
     removeProducers()
   }
+
+  useEffect(() => {
+    try {
+      api.get('/activitie').then((response) => {
+        if(response.status === 200) {
+          setJetsonOnline(true)
+        } 
+      })
+    } catch (err) {
+      console.log(err)
+      setJetsonOnline(false)
+    }
+  }, [])
 
   
   const renderItem = ({item}: any) => {
@@ -88,6 +116,8 @@ export function OptionsCount() {
       <TouchableButton
         key={opt.title}
         onPress={() => handleRunDataForCounting(opt.type)}
+        style={{backgroundColor: opt.icon === 'power' ? ( jetsonOnline ? '#a72734' : '#522f32' ) : '#323238', shadowColor: 'red'}}
+        disabled={opt.icon === 'power' && !jetsonOnline}
         >
         <SectionList>
           <Ionicons name={opt.icon} size={18} color="white" />

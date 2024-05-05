@@ -67,7 +67,7 @@ export function History() {
         setLoadingScores(true)
         if (!netInfo.isConnected) {
           // axios.get(`http://167.71.20.221/scores`)
-          await axios.get<Scores[]>(`http://167.71.20.221/scores`).then((res) => {
+          await axios.get<Scores[]>(`https://node.pigtek.com.br/scores`).then((res) => {
             const scoreFormated = res.data.map((score) => {
               return {
                 ...score,

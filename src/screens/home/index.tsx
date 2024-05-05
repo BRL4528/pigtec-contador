@@ -234,6 +234,7 @@ export function Home() {
         }
 
       }
+
       await api.get(`/spawn`, {
         params: {
           cfg: dataConfig?.cfg,
@@ -248,7 +249,7 @@ export function Home() {
       }).then(response => {
         if (response.status === 200) {
           if (!!netInfo.isConnected) {
-            axios.post('http://167.71.20.221/scores', scoreData.score).then((response) => {
+            axios.post('https://node.pigtek.com.br/scores', scoreData.score).then((response) => {
               if (response.status === 200) {
                 const score = {
                   ...scoreData.score,
@@ -298,13 +299,12 @@ export function Home() {
 
 
       if (!!netInfo.isConnected) {
-        await axios.put(`http://167.71.20.221/scores?id=${coutingId}`, dataScore).then((response) => {
+        await axios.put(`https://node.pigtek.com.br/scores?id=${coutingId}`, dataScore).then((response) => {
           if (response.status === 200) {
             handleUpdateLocal(coutingId, dataScore)
           } 
         });
-        console.log('MARCAÇÕES', flagsData)
-        await axios.post(`http://167.71.20.221/markings/createAll`, flagsData);
+        await axios.post(`https://node.pigtek.com.br/markings/createAll`, flagsData);
       } else {
         const dataScoreFormated = {
           ...dataScore,
@@ -355,7 +355,7 @@ export function Home() {
     try {
       if (!!netInfo.isConnected) {
       if (coutingId !== '') {
-        await axios.delete(`http://167.71.20.221/scores?id=${coutingId}`).then(() => {
+        await axios.delete(`https://node.pigtek.com.br/scores?id=${coutingId}`).then(() => {
           toastNative({ title: 'Contagem excluida', description: 'A contagem foi excluida' })
         })
 
